@@ -7,7 +7,7 @@ int main() {
         int r = rand();
         add_team(i, "Hello", r / 123, r / 1000);
     }
-    print_team_table(30);
+    print_all_teams();
     printf("\n");
     print_top_teams();
 
