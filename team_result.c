@@ -1,85 +1,79 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "team_result.h"
 #define N_TOP 10
+#define START_BUFFER_TLIST 10
 
-struct team {
-    int number;
-    char* name;
-    float time;
-    int items;
-}; 
-
-typedef struct team team;
-
-struct team_list {
-    int size;
-    team* teams;
-} t_list;
-
-typedef struct team_list team_list;
+team_list * create_team_list() {
+    team_list * t_list = (team_list *)malloc(sizeof(team_list));
+    t_list->teams = (team *)malloc(sizeof(team) * START_BUFFER_TLIST);
+    if (t_list->teams != NULL) t_list->buffer_size = START_BUFFER_TLIST;
+    else t_list->buffer_size = 0;
+    t_list->size = 0;
+    return t_list;
+}
 
 int first_team_is_heigher(team * team1, team * team2) {
     if (team1->items == team2->items) return team1->time < team2->time; 
     return team1->items > team2->items;
 }
 
-void add_team_in_list(team * NewTeam) {
-    t_list.size++;
-    t_list.teams = (team *)realloc((&t_list)->teams, sizeof(team) * t_list.size);
-    t_list.teams[t_list.size - 1] = *NewTeam;
+void add_team_in_list(team_list * t_list, int Number, char* Name, float Time, int Items) {
+    t_list->size++;
+    if (t_list->buffer_size < t_list->size) {
+        t_list->buffer_size *= 2;
+        t_list->teams = (team *)realloc(t_list->teams, sizeof(team) * t_list->buffer_size);
+    }
+    t_list->teams[t_list->size - 1] = make_team(Number, Name, Time, Items);
 }
 
-void add_team(int Number, char* Name, float Time, int Items) {
+team make_team(int Number, char* Name, float Time, int Items) {
     team NewTeam;
     NewTeam.number = Number;
     NewTeam.name = (char *)malloc(sizeof(Name));
     strcpy(NewTeam.name, Name);
     NewTeam.time = Time;
     NewTeam.items = Items;
-    add_team_in_list(&NewTeam);
+    return NewTeam;
 }
 
 void print_team_result(team * T) {
     printf("Team number %i, name = %s, time = %f, items = %i\n", T->number, T->name, T->time, T->items);
 }
 
-void print_team_table(team * teams, int size) {
+void print_team_table(team_list * t_list) {
     int i = 0;
-    while (i < size) {
+    while (i < t_list->size) {
         printf("#%i ", i + 1);
-        print_team_result(&teams[i]);
+        print_team_result(&(t_list->teams)[i]);
         ++i;
     }
 }
 
-void incert_in_toplist(team * T, team * toplist, int size_of_toplist) {
+void incert_in_toplist(team_list * top_list, team * T) {
     int i = 0;
-    while (i < size_of_toplist && first_team_is_heigher(&toplist[i], T)) ++i;
-    if (i < size_of_toplist) {
-        for (int j = size_of_toplist - 1; j > i; --j) toplist[j] = toplist[j - 1];
-        toplist[i] = *T;
+    while (i < top_list->buffer_size && i != top_list->size && first_team_is_heigher(&(top_list->teams[i]), T)) ++i;
+    if (i < top_list->buffer_size) {
+        if (top_list->size < top_list->buffer_size) ++top_list->size;
+        for (int j = top_list->size - 1; j > i; --j) top_list->teams[j] = top_list->teams[j - 1];
+        top_list->teams[i] = *T;
     }
 }
 
-team * create_top_list(team_list * tlist, int size_of_toplist) {
-    team * top_list;
-    top_list = (team *)malloc(sizeof(team) * size_of_toplist);
-    team T0;
-    T0.number = -1;
-    T0.name = "";
-    T0.time = -1;
-    T0.items = -1;
-    for (int i = 0; i < size_of_toplist; ++i) top_list[i] = T0;
-    for (int i = 0; i < tlist->size; ++i) incert_in_toplist(&(tlist->teams)[i], top_list, size_of_toplist);
+team_list * create_top_list(team_list * t_list) {
+    team_list * top_list = (team_list *)malloc(sizeof(team_list));
+    top_list->size = 0;
+    if (N_TOP > t_list->size) top_list->buffer_size = t_list->size;
+    else top_list->buffer_size = N_TOP; 
+    top_list->teams = (team *)malloc(sizeof(team) * top_list->buffer_size);
+    for (int i = 0; i < t_list->size; ++i) incert_in_toplist(top_list, &(t_list->teams)[i]);
     return top_list;
 }
 
-void print_top_teams() {
-    int size_of_toplist = N_TOP;
-    if (size_of_toplist > t_list.size) size_of_toplist = t_list.size;
-    team * top_list = create_top_list(&t_list, size_of_toplist);
-    print_team_table(top_list, size_of_toplist);
+void print_top_teams(team_list * t_list) {
+    team_list * toplist = create_top_list(t_list);
+    print_team_table(toplist);
 }
 
 /*

@@ -3,8 +3,8 @@
 #define STR_CONST_LEN 255
 
 int main() {
-
-    for (int i = 0; i < 5; ++i) {
+    team_list * tlist = create_team_list();
+    for (int i = 0; i < 7; ++i) {
         int number;
         char name[STR_CONST_LEN];
         float time;
@@ -17,10 +17,10 @@ int main() {
         scanf("%f", &time);
         printf("ITEMS = ");
         scanf("%i", &items);
-        add_team(number, name, time, items);
+        add_team_in_list(tlist, number, name, time, items);
     }
     printf("\n");
-    print_top_teams();
+    print_top_teams(tlist);
 
     return 0;
 }
