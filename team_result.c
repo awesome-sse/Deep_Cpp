@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define N_TOP 10
 
 struct team {
     int number;
     char* name;
-    double time;
+    float time;
     int items;
 }; 
 
@@ -24,15 +25,16 @@ int first_team_is_heigher(team * team1, team * team2) {
 }
 
 void add_team_in_list(team * NewTeam) {
-    t_list.size ++;
+    t_list.size++;
     t_list.teams = (team *)realloc((&t_list)->teams, sizeof(team) * t_list.size);
     t_list.teams[t_list.size - 1] = *NewTeam;
 }
 
-void add_team(int Number, char* Name, double Time, int Items) {
+void add_team(int Number, char* Name, float Time, int Items) {
     team NewTeam;
     NewTeam.number = Number;
-    NewTeam.name = Name;
+    NewTeam.name = (char *)malloc(sizeof(Name));
+    strcpy(NewTeam.name, Name);
     NewTeam.time = Time;
     NewTeam.items = Items;
     add_team_in_list(&NewTeam);
@@ -80,6 +82,7 @@ void print_top_teams() {
     print_team_table(top_list, size_of_toplist);
 }
 
+/*
 void print_all_teams() {
     int i = 0;
     while (i < t_list.size) {
@@ -87,3 +90,4 @@ void print_all_teams() {
         ++i;
     }
 }
+*/
