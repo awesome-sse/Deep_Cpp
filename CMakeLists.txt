@@ -9,16 +9,16 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-project(team_result)
+project(team_list)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(LIB_SOURCE_FILES team_result.c)
-add_library(team_result STATIC ${LIB_SOURCE_FILES})
+set(LIB_SOURCE_FILES team_list.c)
+add_library(team_list STATIC ${LIB_SOURCE_FILES})
 
 add_executable(main main.c)
-target_link_libraries(main team_result)
+target_link_libraries(main team_list)
 
-add_executable(test test.cpp)
-target_link_libraries(test team_result gtest_main)
+add_executable(team_list_test team_list_test.cpp)
+target_link_libraries(team_list_test team_list gtest_main)

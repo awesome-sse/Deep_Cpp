@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "team_result.h"
+#include "team_list.h"
 #define N_TOP 10
 #define START_BUFFER_TLIST 10
 
-team_list * create_team_list() {
-    team_list * t_list = (team_list *)malloc(sizeof(team_list));
-    t_list->teams = (team *)malloc(sizeof(team) * START_BUFFER_TLIST);
-    if (t_list->teams != NULL) t_list->buffer_size = START_BUFFER_TLIST;
-    else t_list->buffer_size = 0;
-    t_list->size = 0;
+team_list create_team_list() {
+    team_list t_list;
+    t_list.teams = (team *)malloc(sizeof(team) * START_BUFFER_TLIST);
+    if (t_list.teams != NULL) t_list.buffer_size = START_BUFFER_TLIST;
+    else t_list.buffer_size = 0;
+    t_list.size = 0;
     return t_list;
 }
 
@@ -74,6 +74,14 @@ team_list * create_top_list(team_list * t_list) {
 void print_top_teams(team_list * t_list) {
     team_list * toplist = create_top_list(t_list);
     print_team_table(toplist);
+    clear_team_list(toplist);
+}
+
+void clear_team_list(team_list * t_list) {
+    free(t_list->teams);
+    t_list->teams = NULL;
+    t_list->buffer_size = 0;
+    t_list->size = 0;
 }
 
 /*
