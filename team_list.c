@@ -64,13 +64,3 @@ void clear_team_list(team_list * t_list) {
     t_list->buffer_size = 0;
     t_list->size = 0;
 }
-
-/*
-void print_all_teams() {
-    int i = 0;
-    while (i < t_list.size) {
-        print_team_result(&t_list.teams[i]);
-        ++i;
-    }
-}
-*/
