@@ -18,7 +18,7 @@ COMPILE_FLAGS "-ftest-coverage -fprofile-arcs"LINK_FLAGS    "-lgcov --coverage")
 #Set library
 set(LIB_SOURCE_FILES team_list.c)
 add_library(team_list STATIC ${LIB_SOURCE_FILES})
-
+//
 # Build main
 add_executable(main main.c)
 target_link_libraries(main team_list)
