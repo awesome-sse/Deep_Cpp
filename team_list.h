@@ -1,5 +1,4 @@
-#pragma once
-//123 
+#pragma once 
 
 typedef struct team {
     int number;
