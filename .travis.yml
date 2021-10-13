@@ -59,15 +59,13 @@ script:
     # Build main and tests
      - mkdir .build/
      - cd .build/
-     - cmake ..  
+     - cmake -DCMAKE_BUILD_TYPE=PROFILE ..  
      - make
      - valgrind --tool=memcheck --leak-check=full --error-exitcode=1 ctest
      - cd ..
      - cppcheck *.c *.cpp *.h 
      
 after_success:
-  codecov:
-  token: ba2a5f16-4a4e-4145-9e39-7c5d76ea4c8a
 # Create lcov report
 - lcov --capture --directory . --output-file coverage.info
 - lcov --remove coverage.info '/.build/*' --output-file coverage.info # filter system-files
