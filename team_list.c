@@ -38,19 +38,6 @@ team make_team(int Number, char* Name, float Time, int Items) {
     return NewTeam;
 }
 
-void print_team_result(team * T) {
-    printf("Team number %i, name = %s, time = %f, items = %i\n", T->number, T->name, T->time, T->items);
-}
-
-void print_team_table(team_list * t_list) {
-    int i = 0;
-    while (i < t_list->size) {
-        printf("#%i ", i + 1);
-        print_team_result(&(t_list->teams)[i]);
-        ++i;
-    }
-}
-
 void incert_in_toplist(team_list * top_list, team * T) {
     int i = 0;
     while (i < top_list->buffer_size && i != top_list->size && first_team_is_heigher(&(top_list->teams[i]), T)) ++i;
@@ -61,20 +48,14 @@ void incert_in_toplist(team_list * top_list, team * T) {
     }
 }
 
-team_list * create_top_list(team_list * t_list) {
-    team_list * top_list = (team_list *)malloc(sizeof(team_list));
-    top_list->size = 0;
-    if (N_TOP > t_list->size) top_list->buffer_size = t_list->size;
-    else top_list->buffer_size = N_TOP; 
-    top_list->teams = (team *)malloc(sizeof(team) * top_list->buffer_size);
-    for (int i = 0; i < t_list->size; ++i) incert_in_toplist(top_list, &(t_list->teams)[i]);
+team_list create_top_list(team_list * t_list) {
+    team_list top_list;
+    top_list.size = 0;
+    if (N_TOP > t_list->size) top_list.buffer_size = t_list->size;
+    else top_list.buffer_size = N_TOP; 
+    top_list.teams = (team *)malloc(sizeof(team) * top_list.buffer_size);
+    for (int i = 0; i < t_list->size; ++i) incert_in_toplist(&top_list, &(t_list->teams)[i]);
     return top_list;
-}
-
-void print_top_teams(team_list * t_list) {
-    team_list * toplist = create_top_list(t_list);
-    print_team_table(toplist);
-    clear_team_list(toplist);
 }
 
 void clear_team_list(team_list * t_list) {

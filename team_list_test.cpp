@@ -67,12 +67,12 @@ TEST(TEAM_RESULT_TEST, Assert_6) {
   add_team_in_list(&t_list, 3, team_name, 150, 9);
   add_team_in_list(&t_list, 4, team_name, 1, 4);
   add_team_in_list(&t_list, 5, team_name, 200, 6);
-  team_list * top = create_top_list(&t_list);
+  team_list top = create_top_list(&t_list);
   int real_top_numbers[5] = {2, 3, 1, 5, 4};
   int my_top_numbers[5];
-  for (int i = 0; i < 5; ++i) my_top_numbers[i] = top->teams[i].number;
+  for (int i = 0; i < 5; ++i) my_top_numbers[i] = top.teams[i].number;
   EXPECT_TRUE(0 == std::memcmp(real_top_numbers, my_top_numbers, sizeof(real_top_numbers)));
-  clear_team_list(top);
+  clear_team_list(&top);
   clear_team_list(&t_list);
 }
 
