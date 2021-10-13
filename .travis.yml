@@ -8,6 +8,18 @@ addons:
       - valgrind
       - lcov
 
+env:
+  global:
+    # Ubuntu version
+    - LINUX_DIST=bionic
+    - DEPS_DIR=${TRAVIS_BUILD_DIR}/deps
+    # Global build options and C++ flags
+    - C_FLAGS="-Wall -Wpedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow"
+    - CXX_FLAGS="-Wall -Wpedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow"
+    # Misc
+    - RUN_TESTS=true
+    - COVERAGE=false
+
 matrix:
   include:
     - os: linux
