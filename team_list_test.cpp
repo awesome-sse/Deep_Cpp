@@ -2,7 +2,7 @@
 #include <cstring>
 #include "team_list.c"
 
-TEST(TEAM_RESULT_TEST, Assert_1) {
+TEST(TEAM_LIST_TEST, Assert_1) {
   team_list t_list = create_team_list();
   char team_name[10] = "TEAM";
   add_team_in_list(&t_list, 1, team_name, 100, 7);
@@ -10,14 +10,14 @@ TEST(TEAM_RESULT_TEST, Assert_1) {
   EXPECT_EQ(t_list.teams, nullptr);
 }
 
-TEST(TEAM_RESULT_TEST, Assert_2) {
+TEST(TEAM_LIST_TEST, Assert_2) {
   team_list t_list = create_team_list();
   EXPECT_EQ(t_list.size, 0);
   EXPECT_EQ(t_list.buffer_size, 10);
   clear_team_list(&t_list);
 }
 
-TEST(TEAM_RESULT_TEST, Assert_3) {
+TEST(TEAM_LIST_TEST, Assert_3) {
   team_list t_list = create_team_list();
   char team_name[10] = "TEAM";
   add_team_in_list(&t_list, 1, team_name, 100, 10);
@@ -26,7 +26,7 @@ TEST(TEAM_RESULT_TEST, Assert_3) {
   clear_team_list(&t_list);
 }
 
-TEST(TEAM_RESULT_TEST, Assert_4) {
+TEST(TEAM_LIST_TEST, Assert_4) {
   team_list t_list = create_team_list();
   char team_name[10] = "TEAM";
   add_team_in_list(&t_list, 1, team_name, 100, 10);
@@ -39,7 +39,7 @@ TEST(TEAM_RESULT_TEST, Assert_4) {
   clear_team_list(&t_list);
 }
 
-TEST(TEAM_RESULT_TEST, Assert_5) {
+TEST(TEAM_LIST_TEST, Assert_5) {
   team_list t_list = create_team_list();
   char team_name[10] = "TEAM";
   add_team_in_list(&t_list, 1, team_name, 100, 10);
@@ -59,7 +59,7 @@ TEST(TEAM_RESULT_TEST, Assert_5) {
   clear_team_list(&t_list);
 }
 
-TEST(TEAM_RESULT_TEST, Assert_6) {
+TEST(TEAM_LIST_TEST, Assert_6) {
   team_list t_list = create_team_list();
   char team_name[10] = "TEAM";
   add_team_in_list(&t_list, 1, team_name, 100, 7);
