@@ -22,3 +22,19 @@ target_link_libraries(main team_list)
 
 add_executable(team_list_test team_list_test.cpp)
 target_link_libraries(team_list_test team_list gtest_main)
+
+# Build main
+option(MAIN ON)
+if (MAIN)
+    add_executable(main main.c)
+    target_link_libraries(main team_list)
+endif()
+
+# Build team_list_test
+option(TEAM_LIST ON)
+if (TEAM_LIST)
+    enable_testing()
+    add_executable(team_list team_list.cpp)
+    target_link_libraries(team_list_test team_list gtest_main)
+    gtest_add_tests(TARGET team_list_test)
+endif()
