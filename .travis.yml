@@ -67,7 +67,6 @@ script:
      
 after_success:
 # Create lcov report
-CODECOV_TOKEN = ba2a5f16-4a4e-4145-9e39-7c5d76ea4c8a
 - lcov --capture --directory . --output-file coverage.info
 - lcov --remove coverage.info '/.build/*' --output-file coverage.info # filter system-files
 - lcov --list coverage.info 
