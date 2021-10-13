@@ -4,7 +4,7 @@
 
 int main() {
     team_list tlist = create_team_list();
-    for (int i = 0; i < 7; ++i) {
+    for (int i = 0; i < 10; ++i) {
         int number;
         char name[STR_CONST_LEN];
         float time;
