@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "team_list.h"
-#define STR_CONST_LEN 255
+#define STR_CONST_LEN 254
 
 int main() {
     team_list tlist = create_team_list();
@@ -12,7 +12,7 @@ int main() {
         printf("NUM = ");
         scanf("%i", &number);
         printf("Name = ");
-        scanf("%s", &name);
+        scanf("%254s", name);
         printf("TIME = ");
         scanf("%f", &time);
         printf("ITEMS = ");
