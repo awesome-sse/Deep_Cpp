@@ -11,41 +11,29 @@ FetchContent_MakeAvailable(googletest)
 
 project(team_list)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-set(LIB_SOURCE_FILES team_list.c)
-add_library(team_list STATIC ${LIB_SOURCE_FILES})
-
+# This flags are used if cmake is called with -DCMAKE_BUILD_TYPE=PROFILE
 set(CMAKE_C_FLAGS_PROFILE --coverage)
 set(CMAKE_CXX_FLAGS_PROFILE --coverage)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #set cpp compile flags
-set(CPP_FLAGS "-Wall -Wpedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow")
-set(C_FLAGS "-std=gnu11 -Wall -Wpedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow")
+set(CPP_FLAGS)
+set(C_FLAGS)
 set(CMAKE_CXX_FLAGS ${CPP_FLAGS})
 set(CMAKE_C_FLAGS ${C_FLAGS})
 
+set(LIB_SOURCE_FILES team_list.c)
+add_library(team_list STATIC ${LIB_SOURCE_FILES})
+
+# Build main
 add_executable(main main.c)
 target_link_libraries(main team_list)
 
-add_executable(team_list_test team_list_test.cpp)
-target_link_libraries(team_list_test team_list gtest_main)
-
-# Build main
-option(MAIN ON)
-if (MAIN)
-    add_executable(main main.c)
-    target_link_libraries(main team_list)
-endif()
-
 # Build team_list_test
-option(TEAM_LIST ON)
-if (TEAM_LIST)
-    enable_testing()
-    include(GoogleTest)
-    add_executable(team_list_test team_list_test.cpp)
-    target_link_libraries(team_list_test team_list gtest_main)
-    gtest_add_tests(TARGET team_list_test)
-endif()
+enable_testing()
+
+add_executable(team_list_test team_list_test.cpp)
+target_link_libraries(team_list_test gtest_main team_list)
+
+include(GoogleTest)
+gtest_add_tests(TARGET team_list_test)

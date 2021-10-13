@@ -47,7 +47,6 @@ install:
     - ${CXX} --version
     - ${CXX} -v
     - sudo apt-get install valgrind
-    - sudo apt-get install gcovr
     - sudo apt-get install clang-format
     - sudo apt-get install cppcheck
     
@@ -63,7 +62,7 @@ script:
     # Build main and tests
      - mkdir .build/
      - cd .build/
-     - cmake .. 
+     - cmake ..  
      - make
      - valgrind --tool=memcheck --leak-check=full --error-exitcode=1 ctest
      - cd ..
