@@ -11,6 +11,10 @@ FetchContent_MakeAvailable(googletest)
 
 project(team_list)
 
+# The libs above also need to be compiled with the same flags.
+set_target_properties(dss-sim
+PROPERTIES
+COMPILE_FLAGS "-ftest-coverage -fprofile-arcs"LINK_FLAGS    "-lgcov --coverage")
 #Set library
 set(LIB_SOURCE_FILES team_list.c)
 add_library(team_list STATIC ${LIB_SOURCE_FILES})
