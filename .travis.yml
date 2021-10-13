@@ -20,26 +20,7 @@ env:
     - RUN_TESTS=true
     - COVERAGE=false
 
-matrix:
-  include:
-    - os: linux
-      dist: bionic
-      sudo: true
-      compiler:
-        - gcc
-      addons:
-       apt:
-         packages: 
-           - gcc-7
-           - g++-7
-           - valgrind
-           # Misc
-           - python-yaml
-           - lcov
-           - libopencv-dev
-         sources: 
-           - ubuntu-toolchain-r-test
-    
+
 install:
     - if [ "$CXX" = "clang++" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX="clang++-6.0" CC="clang-6.0"; fi
     - echo ${PATH}
