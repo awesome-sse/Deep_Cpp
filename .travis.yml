@@ -1,42 +1,25 @@
 language: cpp
 
-addons:
-  apt:
-    packages:
-      - valgrind
-      - lcov
+arch:
+  - amd64
+  - arm64  
+  - ppc64le
+  - s390x
 
-env:
-  global:
-    # Ubuntu version
-    - LINUX_DIST=bionic
-    - DEPS_DIR=${TRAVIS_BUILD_DIR}/deps
-    # Global build options and C++ flags
-    - C_FLAGS="-Wall -Wpedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow"
-    - CXX_FLAGS="-Wall -Wpedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow"
-    # Misc
-    - RUN_TESTS=true
-    - COVERAGE=false
+compiler:
+  - gcc
+  - clang
 
-matrix:
+jobs:
   include:
-    - os: linux
-      dist: bionic
-      sudo: true
-      compiler:
-        - gcc
-      addons:
-       apt:
-         packages: 
-           - gcc-7
-           - g++-7
-           - valgrind
-           # Misc
-           - python-yaml
-           - lcov
-           - libopencv-dev
-         sources: 
-           - ubuntu-toolchain-r-test
+   - os: linux
+     arch: amd64
+   - os: linux
+     arch: arm64
+   - os: linux
+     arch: arm64-graviton2
+     virt: lxd
+     group: edge
     
 install:
     - if [ "$CXX" = "clang++" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX="clang++-6.0" CC="clang-6.0"; fi
@@ -66,6 +49,7 @@ script:
      - cd ..
      - cppcheck --inconclusive --enable=all *.c *.cpp *.h 
      - clang-format -i --style=Google *.cpp *.h *.c
+     s
 after_success:
 # Create lcov report
 - lcov --capture --directory . --output-file coverage.info
