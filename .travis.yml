@@ -10,17 +10,18 @@ compiler:
   - gcc
   - clang
 
+
 jobs:
   include:
-   - os: linux
-     arch: amd64
-   - os: linux
-     arch: arm64
-   - os: linux
-     arch: arm64-graviton2
-     virt: lxd
-     group: edge
-    
+    - os: linux
+      dist: bionic
+      sudo: true
+      addons:
+       apt:
+         packages: 
+           - gcc-7
+           - g++-7
+           - valgrind
 install:
     - if [ "$CXX" = "clang++" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX="clang++-6.0" CC="clang-6.0"; fi
     - echo ${PATH}
@@ -49,7 +50,6 @@ script:
      - cd ..
      - cppcheck --inconclusive --enable=all *.c *.cpp *.h 
      - clang-format -i --style=Google *.cpp *.h *.c
-     s
 after_success:
 # Create lcov report
 - lcov --capture --directory . --output-file coverage.info
