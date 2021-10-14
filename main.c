@@ -1,24 +1,32 @@
 #include <stdio.h>
 #include "team_list.h"
-#define STR_CONST_LEN 254
+#define STR_CONST_LEN 255
 
-void print_team_table(team_list * t_list) {
+int print_team_table(team_list * t_list) {
+    if(t_list == NULL) return 1;
+
     int i = 0;
     while (i < t_list->size) {
         printf("#%i ", i + 1);
         printf("Team number %i, name = %s, time = %f, items = %i\n", t_list->teams[i].number, t_list->teams[i].name, t_list->teams[i].time, t_list->teams[i].items);
         ++i;
     }
+    return 0;
 }
 
-void print_top_teams(team_list * t_list) {
+int print_top_teams(team_list * t_list) {
+    if(t_list == NULL) return 1;
+
     printf("\tTOP LIST\n");
     team_list toplist = create_top_list(t_list);
     print_team_table(&toplist);
     clear_team_list(&toplist);
+    return 0;
 }
 
-void add_team(team_list * t_list) {
+int add_team(team_list * t_list) {
+    if(t_list == NULL) return 1;
+
     int number;
     char name[STR_CONST_LEN];
     float time;
@@ -31,14 +39,19 @@ void add_team(team_list * t_list) {
     scanf("%f", &time);
     printf("Team items = ");
     scanf("%i", &items);
-    add_team_in_list(t_list, number, name, time, items);
+    return add_team_in_list(t_list, number, name, time, items);
 }
 
-void processor_of_command(int cmd, team_list * t_list) {
-    if (cmd == 1) add_team(t_list);
-    else if (cmd == 2) print_team_table(t_list);
-    else if (cmd == 3) print_top_teams(t_list);
-    else if (cmd != 0) printf("Command is not recognized\n");
+int processor_of_command(int cmd, team_list * t_list) {
+    switch (cmd) {
+        case 1: return add_team(t_list);
+        case 2: return print_team_table(t_list);
+        case 3: return print_top_teams(t_list);
+        case 0: return 0;
+        default: 
+            printf("Command is not recognized\n");
+            return 0;
+    }
 }
 
 int run() {
@@ -48,12 +61,16 @@ int run() {
     while (command) {
         printf("Input command: ");
         scanf("%i", &command);
-        processor_of_command(command, &t_list);
+        int return_code = processor_of_command(command, &t_list);
+        if (return_code == 1) {
+            clear_team_list(&t_list);
+            return return_code;
+        }
     }
     clear_team_list(&t_list);
+    return 0;
 }
 
 int main() {
-    run();
-    return 0;
+    return run();
 }

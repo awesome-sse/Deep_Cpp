@@ -8,7 +8,9 @@
 team_list create_team_list() {
     team_list t_list;
     t_list.teams = (team *)malloc(sizeof(team) * START_BUFFER_TLIST);
-    if (t_list.teams != NULL) t_list.buffer_size = START_BUFFER_TLIST;
+    if (t_list.teams != NULL) {
+        t_list.buffer_size = START_BUFFER_TLIST;
+    }
     else t_list.buffer_size = 0;
     t_list.size = 0;
     return t_list;
@@ -19,13 +21,21 @@ int first_team_is_heigher(team * team1, team * team2) {
     return team1->items > team2->items;
 }
 
-void add_team_in_list(team_list * t_list, int Number, char* Name, float Time, int Items) {
+int add_team_in_list(team_list * t_list, int Number, char* Name, float Time, int Items) {
+    if (t_list == NULL) return 1;
     t_list->size++;
     if (t_list->buffer_size < t_list->size) {
         t_list->buffer_size *= 2;
-        t_list->teams = (team *)realloc(t_list->teams, sizeof(team) * t_list->buffer_size);
+        team * temp = (team *)realloc(t_list->teams, sizeof(team) * t_list->buffer_size);
+        if (temp == NULL) {
+            return 1;
+        }
+        else {
+            t_list->teams = temp;
+        }
     }
     t_list->teams[t_list->size - 1] = make_team(Number, Name, Time, Items);
+    return 0;
 }
 
 team make_team(int Number, char* Name, float Time, int Items) {
@@ -54,6 +64,9 @@ team_list create_top_list(team_list * t_list) {
     if (N_TOP > t_list->size) top_list.buffer_size = t_list->size;
     else top_list.buffer_size = N_TOP; 
     top_list.teams = (team *)malloc(sizeof(team) * top_list.buffer_size);
+    if (top_list.teams == NULL) {
+        top_list.buffer_size = 0;
+    }
     for (int i = 0; i < t_list->size; ++i) incert_in_toplist(&top_list, &(t_list->teams)[i]);
     return top_list;
 }

@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include <cstring>
-#include "team_list.c"
+extern "C" {
+  #include "team_list.c"
+}
 
 TEST(TEAM_LIST_TEST, Assert_1) {
   team_list t_list = create_team_list();
