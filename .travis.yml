@@ -46,6 +46,7 @@ install:
     - ${CXX} -v
     - sudo apt-get install valgrind
     - sudo apt-get install cppcheck
+    - sudo apt-get install clang-format
     
     # Download and install recent Cmake
     - |
@@ -64,7 +65,7 @@ script:
      - valgrind --tool=memcheck --leak-check=full --error-exitcode=1 ctest
      - cd ..
      - cppcheck --inconclusive --enable=all --language=c *.c *.cpp *.h 
-     
+     - clang-format -i *.cpp *.h *.c
 after_success:
 # Create lcov report
 - lcov --capture --directory . --output-file coverage.info
