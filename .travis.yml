@@ -64,8 +64,8 @@ script:
      - make
      - valgrind --tool=memcheck --leak-check=full --error-exitcode=1 ctest
      - cd ..
-     - cppcheck --inconclusive --enable=all --language=c *.c *.cpp *.h 
-     - clang-format -i *.cpp *.h *.c
+     - cppcheck --inconclusive --enable=all --language=cpp *.c *.cpp *.h 
+     - clang-format -i --style=Google *.cpp *.h *.c
 after_success:
 # Create lcov report
 - lcov --capture --directory . --output-file coverage.info

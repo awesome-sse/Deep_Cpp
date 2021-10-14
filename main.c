@@ -3,20 +3,22 @@
 #define STR_CONST_LEN 255
 
 int print_team_table(team_list * t_list) {
-    if(t_list == NULL) return 1;
-
+    if(t_list == NULL) {
+        return 1;
+    }
     int i = 0;
     while (i < t_list->size) {
         printf("#%i ", i + 1);
-        printf("Team number %i, name = %s, time = %f, items = %i\n", t_list->teams[i].number, t_list->teams[i].name, t_list->teams[i].time, t_list->teams[i].items);
+        printf("Team number %i, name = %s, time = %f, items = %i\n", t_list->teams[i]->number, t_list->teams[i]->name, t_list->teams[i]->time, t_list->teams[i]->items);
         ++i;
     }
     return 0;
 }
 
 int print_top_teams(team_list * t_list) {
-    if(t_list == NULL) return 1;
-
+    if(t_list == NULL) {
+        return 1;
+    }
     printf("\tTOP LIST\n");
     team_list toplist = create_top_list(t_list);
     print_team_table(&toplist);
@@ -25,8 +27,9 @@ int print_top_teams(team_list * t_list) {
 }
 
 int add_team(team_list * t_list) {
-    if(t_list == NULL) return 1;
-
+    if(t_list == NULL) {
+        return 1;
+    }
     int number;
     char name[STR_CONST_LEN];
     float time;
@@ -43,6 +46,9 @@ int add_team(team_list * t_list) {
 }
 
 int processor_of_command(int cmd, team_list * t_list) {
+    if (t_list == NULL) {
+        return 1;
+    }
     switch (cmd) {
         case 1: return add_team(t_list);
         case 2: return print_team_table(t_list);

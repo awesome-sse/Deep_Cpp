@@ -4,7 +4,7 @@ extern "C" {
   #include "team_list.c"
 }
 
-TEST(TEAM_LIST_TEST, Assert_1) {
+TEST(TEAM_LIST_TEST, test_clear_list) {
   team_list t_list = create_team_list();
   char team_name[10] = "TEAM";
   add_team_in_list(&t_list, 1, team_name, 100, 7);
@@ -12,14 +12,14 @@ TEST(TEAM_LIST_TEST, Assert_1) {
   EXPECT_EQ(t_list.teams, nullptr);
 }
 
-TEST(TEAM_LIST_TEST, Assert_2) {
+TEST(TEAM_LIST_TEST, test_creating_list) {
   team_list t_list = create_team_list();
   EXPECT_EQ(t_list.size, 0);
   EXPECT_EQ(t_list.buffer_size, 10);
   clear_team_list(&t_list);
 }
 
-TEST(TEAM_LIST_TEST, Assert_3) {
+TEST(TEAM_LIST_TEST, test_add_team_in_list) {
   team_list t_list = create_team_list();
   char team_name[10] = "TEAM";
   add_team_in_list(&t_list, 1, team_name, 100, 10);
@@ -28,7 +28,7 @@ TEST(TEAM_LIST_TEST, Assert_3) {
   clear_team_list(&t_list);
 }
 
-TEST(TEAM_LIST_TEST, Assert_4) {
+TEST(TEAM_LIST_TEST, test_add_teams_in_list) {
   team_list t_list = create_team_list();
   char team_name[10] = "TEAM";
   add_team_in_list(&t_list, 1, team_name, 100, 10);
@@ -41,7 +41,7 @@ TEST(TEAM_LIST_TEST, Assert_4) {
   clear_team_list(&t_list);
 }
 
-TEST(TEAM_LIST_TEST, Assert_5) {
+TEST(TEAM_LIST_TEST, test_increase_buf_size) {
   team_list t_list = create_team_list();
   char team_name[10] = "TEAM";
   add_team_in_list(&t_list, 1, team_name, 100, 10);
@@ -61,7 +61,7 @@ TEST(TEAM_LIST_TEST, Assert_5) {
   clear_team_list(&t_list);
 }
 
-TEST(TEAM_LIST_TEST, Assert_6) {
+TEST(TEAM_LIST_TEST, test_top_list) {
   team_list t_list = create_team_list();
   char team_name[10] = "TEAM";
   add_team_in_list(&t_list, 1, team_name, 100, 7);
@@ -72,7 +72,7 @@ TEST(TEAM_LIST_TEST, Assert_6) {
   team_list top = create_top_list(&t_list);
   int real_top_numbers[5] = {2, 3, 1, 5, 4};
   int my_top_numbers[5];
-  for (int i = 0; i < 5; ++i) my_top_numbers[i] = top.teams[i].number;
+  for (int i = 0; i < 5; ++i) my_top_numbers[i] = top.teams[i]->number;
   EXPECT_TRUE(0 == std::memcmp(real_top_numbers, my_top_numbers, sizeof(real_top_numbers)));
   clear_team_list(&top);
   clear_team_list(&t_list);
