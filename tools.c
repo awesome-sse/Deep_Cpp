@@ -6,7 +6,7 @@
 #include "assert.h"
 #include "tools.h"
 
-int n_files(char * dirname) {
+int n_files(const char * dirname) {
     int kol = 0;
     DIR * dir = opendir(dirname);
     struct dirent* entity;
@@ -27,12 +27,12 @@ char lower(char sym) {
     return sym;
 }
 
-int new_word_in_file_tf_idf(file_info * f_info, char * word) {
+int new_word_in_file_tf_idf(file_info * f_info, const char * word) {
     if (f_info->size == f_info->buf_size) {
         f_info->buf_size = f_info->buf_size * 2;
         f_info->file_prop = (word_info *)realloc(f_info->file_prop, sizeof(word_info) * f_info->buf_size);
     }
-    if (f_info->file_prop != NULL) {
+    if (likely(f_info->file_prop != NULL)) {
         strcpy(f_info->file_prop[f_info->size].word_name, word);
         f_info->file_prop[f_info->size].count = 1;
         f_info->size += 1;
@@ -43,22 +43,22 @@ int new_word_in_file_tf_idf(file_info * f_info, char * word) {
     }
 }
 
-void add_word_in_file_tf_idf(file_info * f_info, char * word) {
+void add_word_in_file_tf_idf(file_info * f_info, const char * word) {
     for (int i = 0; i < f_info->size; ++i) {
         if (strcmp(f_info->file_prop[i].word_name, word) == 0) {
             f_info->file_prop[i].count += 1;
             return;
         }
     }
-    if (new_word_in_file_tf_idf(f_info, word)) {
+    if (unlikely(new_word_in_file_tf_idf(f_info, word))) {
         assert(0);
     };
 }
 
-void words_info(file_info * f_info, char * name_file) {
+int words_info(file_info * f_info, const char * name_file) {
     FILE * text_file = fopen(name_file, "r");
-    if (text_file == NULL) {
-        return;
+    if (unlikely(text_file == NULL)) {
+        return 1;
     }
     char str[30] = "";
     char sym;
@@ -80,6 +80,7 @@ void words_info(file_info * f_info, char * name_file) {
         f_info->n_words += 1;
     }
     fclose(text_file);
+    return 0;
 }
 
 void file_tf_idf(file_info * f_info) {
@@ -90,7 +91,7 @@ void file_tf_idf(file_info * f_info) {
 
 void incert_in_top_list(word_info * w_info, word_info * top[N_TOP]) {
     size_t i = 0;
-    while (i < N_TOP && top[i] != NULL && w_info->count < top[i]->count) {
+    while (i < N_TOP && top[i] != NULL && w_info->count <= top[i]->count) {
         ++i;
     }
     if (i < N_TOP) {
@@ -110,18 +111,21 @@ void create_file_top_words(file_info * f_info) {
     }
 }
 
-file_info create_file_info(char * path, char * name_file) {
+file_info create_file_info(const char * path, const char * name_file) {
     file_info f_info;
-    f_info.name = name_file;
+    strcpy(f_info.name, name_file);
     size_t n_words = 0;
     f_info.size = 0;
     f_info.buf_size = 0;
     f_info.n_words = 0;
     f_info.file_prop = (word_info *)malloc(sizeof(word_info) * START_BUFFER_TF_IDF);
-    if (f_info.file_prop != NULL) {
+    if (likely(f_info.file_prop != NULL)) {
         f_info.buf_size = START_BUFFER_TF_IDF;
     }
-    words_info(&f_info, path);
+    if (unlikely(words_info(&f_info, path))) {
+        assert(0);
+    };
+
     file_tf_idf(&f_info);
     create_file_top_words(&f_info);
     return f_info;
@@ -130,7 +134,7 @@ file_info create_file_info(char * path, char * name_file) {
 
 void clear_file_info(file_info * f_info) {
     f_info->n_words = 0;
-    f_info->name = "";
+    f_info->name[0] = '\0';
     f_info->size = 0;
     f_info->buf_size = 0;
     f_info->n_words = 0;
@@ -154,7 +158,7 @@ void add_in_top_list(top_words * top_list, int size, file_info * f_info) {
     }
 }
 
-void init_top_list(top_words * top_list, char * dirname) {
+void init_top_list(top_words * top_list, const char * dirname) {
     int i = 0;
     DIR * dir = opendir(dirname);
     struct dirent* entity;

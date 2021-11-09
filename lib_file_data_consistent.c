@@ -6,20 +6,17 @@
 #include "lib_file_data_consistent.h"
 
 
-top_words * files_top_words_consistent(char * dirname, int zero) {
+top_words * files_top_words_consistent(const char * dirname, size_t zero) {
     size_t dir_size = n_files(dirname);
 
     top_words *top_list = (top_words *)malloc(sizeof(top_words) * dir_size);
-    if (top_list == NULL) {
+    if (unlikely(top_list == NULL)) {
         assert(0);
     } 
+
     init_top_list(top_list, dirname);
 
     DIR * dir = opendir(dirname);
-    if (dir == NULL) {
-        assert(0);
-    }
-
     struct dirent* entity;
     entity = readdir(dir);
     while (entity != NULL) {

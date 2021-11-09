@@ -9,7 +9,7 @@
 #include "tools.h"
 #include "f_timer.h"
 
-#define DIR_PATH "../test_files"
+#define DIR_PATH "../files"
 
 
 void print_top_words(top_words * top_list, int size) {
@@ -26,8 +26,8 @@ int processor_of_command(int cmd) {
     switch (cmd) {
         case 1: 
             printf("Input : number of file, min words, max words\n");
-            int num_files, min_w, max_w;
-            scanf("%i %i %i", &num_files, &min_w, &max_w);
+            size_t num_files, min_w, max_w;
+            scanf("%zd %zd %zd", &num_files, &min_w, &max_w);
             return generate_files_txt(num_files, min_w, max_w);
         case 2: 
             top_w = files_top_words_consistent(DIR_PATH, 0);
@@ -43,23 +43,21 @@ int processor_of_command(int cmd) {
 
         case 3: 
             printf("Input max numbers of proccess\n");
-            int max_n_proc;
-            scanf("%i", &max_n_proc);
-            if (max_n_proc < 1) {
-                max_n_proc = 1;
-            }
+            size_t max_n_proc;
+            scanf("%zd", &max_n_proc);
             top_w = files_top_words_parallel(DIR_PATH, max_n_proc);
             if (top_w == NULL) {
                 return 1;
             }
             else {
                 print_top_words(top_w, n_files(DIR_PATH));
+                clear_top_words_for_parallel(top_w, DIR_PATH);
                 return 0;
             }
         case 4:
             printf("Input numbers of proccess\n");
-            int num;
-            scanf("%i", &num);
+            size_t num;
+            scanf("%zd", &num);
             if (num == 1) {
                 return f_timer(files_top_words_consistent, DIR_PATH, num);                
             }

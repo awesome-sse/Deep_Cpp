@@ -9,8 +9,11 @@
 #include "assert.h"
 #include "lib_file_data_parallel.h"
 
+int clear_top_words_for_parallel(top_words * t_words, const char * dirname) {
+    return munmap(t_words, n_files(dirname) * sizeof(top_words));
+} 
 
-top_words * files_top_words_parallel(char * dirname, int max_proc) {
+top_words * files_top_words_parallel(const char * dirname, size_t max_proc) {
     if (max_proc < 1) {
         return NULL;
     }
@@ -19,20 +22,18 @@ top_words * files_top_words_parallel(char * dirname, int max_proc) {
     size_t dir_size = n_files(dirname);
 
     top_words *shared_mem = mmap(NULL, sizeof(top_words) * dir_size, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1 , 0);
-    if (shared_mem == MAP_FAILED) {
+    if (unlikely(shared_mem == MAP_FAILED)) {
         return NULL;    
     }
     init_top_list(shared_mem, dirname);
 
-    int * n_proc = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1 , 0);
+    size_t * n_proc = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1 , 0);
     if (n_proc == MAP_FAILED) {
         return NULL;    
     }
-    DIR * dir = opendir(dirname);
-    if (dir == NULL) {
-        return NULL;
-    }
     *n_proc = 1;
+
+    DIR * dir = opendir(dirname);  
     struct dirent* entity;
     entity = readdir(dir);
     char path [100];

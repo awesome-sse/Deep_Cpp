@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 3.16)
 project(hm2)
 
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_C_FLAGS_PROFILE --coverage)
+set(CMAKE_CXX_FLAGS_PROFILE --coverage)
 
 add_library(generate_files STATIC generate_files.c)
 add_library(lib_file_data_consistent STATIC lib_file_data_consistent.c)
