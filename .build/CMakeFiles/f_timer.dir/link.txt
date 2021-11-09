@@ -1,2 +1,0 @@
-/usr/bin/ar qc libf_timer.a  CMakeFiles/f_timer.dir/f_timer.c.o
-/usr/bin/ranlib libf_timer.a
