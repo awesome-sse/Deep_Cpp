@@ -30,7 +30,7 @@ TEST(TEAM_LIST_TEST, test_increase_buf_size) {
 TEST(TEAM_LIST_TEST, test_file_proferties) {
     file_info f_info = create_file_info("../test_files/1.txt", "1.txt");
     EXPECT_EQ(f_info.file_prop[0].count, 5);
-    
+    ASSERT_STREQ(f_info.file_prop[0].word_name, "a");
     EXPECT_EQ(f_info.n_words, 15);
     ASSERT_FLOAT_EQ(f_info.file_prop[0].tf_idf, (float) 5 / 15);
     clear_file_info(&f_info);
