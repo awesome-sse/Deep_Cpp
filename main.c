@@ -27,7 +27,7 @@ int processor_of_command(int cmd) {
         case 1: 
             printf("Input : number of file, min words, max words\n");
             size_t num_files, min_w, max_w;
-            scanf("%zd %zd %zd", &num_files, &min_w, &max_w);
+            scanf("%lu %lu %lu", &num_files, &min_w, &max_w);
             return generate_files_txt(num_files, min_w, max_w);
         case 2: 
             top_w = files_top_words_consistent(DIR_PATH, 0);
@@ -44,7 +44,7 @@ int processor_of_command(int cmd) {
         case 3: 
             printf("Input max numbers of proccess\n");
             size_t max_n_proc;
-            scanf("%zd", &max_n_proc);
+            scanf("%lu", &max_n_proc);
             top_w = files_top_words_parallel(DIR_PATH, max_n_proc);
             if (top_w == NULL) {
                 return 1;
@@ -57,7 +57,7 @@ int processor_of_command(int cmd) {
         case 4:
             printf("Input numbers of proccess\n");
             size_t num;
-            scanf("%zd", &num);
+            scanf("%lu", &num);
             if (num == 1) {
                 return f_timer(files_top_words_consistent, DIR_PATH, num);                
             }
