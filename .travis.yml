@@ -50,7 +50,7 @@ script:
      - make
      - valgrind --tool=memcheck --leak-check=full --error-exitcode=1 ctest
      - cd ..
-     - cd files
+     - cd test_files
      - ls
      - cd ..
      - cppcheck --inconclusive --enable=all *.c *.cpp *.h 
