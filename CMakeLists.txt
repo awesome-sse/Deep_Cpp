@@ -28,7 +28,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(file_info_test file_info_test.cpp)
-target_link_libraries(file_info_test tools lib_file_data_consistent lib_file_data_parallel gtest_main)
+target_link_libraries(file_info_test tools lib_file_data_consistent lib_file_data_parallel f_timer gtest_main)
 
 include(GoogleTest)
 gtest_add_tests(TARGET file_info_test)

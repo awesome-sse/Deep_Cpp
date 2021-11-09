@@ -18,7 +18,7 @@ top_words * files_top_words_parallel(const char * dirname, size_t max_proc) {
         return NULL;
     }
     pid_t pid;
-
+    
     size_t dir_size = n_files(dirname);
 
     top_words *shared_mem = mmap(NULL, sizeof(top_words) * dir_size, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1 , 0);
@@ -26,7 +26,6 @@ top_words * files_top_words_parallel(const char * dirname, size_t max_proc) {
         return NULL;    
     }
     init_top_list(shared_mem, dirname);
-
     size_t * n_proc = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1 , 0);
     if (n_proc == MAP_FAILED) {
         return NULL;    

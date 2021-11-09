@@ -13,7 +13,7 @@ int f_timer(top_words* (*fptr)(const char * dirname, size_t proc), const char * 
         return 1;
     }
 
-    if (proc == 1) {
+    if (proc == 0) {
         clock_t start = clock();
         top_words * p = fptr(dirname, proc);
         clock_t end = clock();

@@ -41,12 +41,12 @@ char* random_word(size_t size) {
     return word;
 }
 
-int generate_files_txt(int n_files, int min_words, int max_words) {
+int generate_files_txt(const char * dirname, int n_files, int min_words, int max_words) {
     FILE * pFile;
     char signs[6] = {' ', '!', '?', '-', '.', '\n'};
     for (int i = 0; i < n_files; ++i) { 
         char n_file[80];
-        sprintf(n_file, "../files/%i.txt", i + 1);
+        sprintf(n_file, "%s/%i.txt", dirname, i + 1);
         if ((pFile = fopen(n_file , "w")) == NULL) {
             return 1;
         }

@@ -9,8 +9,6 @@
 #include "tools.h"
 #include "f_timer.h"
 
-#define DIR_PATH "../files"
-
 
 void print_top_words(top_words * top_list, int size) {
     for (int i = 0; i < size; ++i) {
@@ -21,70 +19,40 @@ void print_top_words(top_words * top_list, int size) {
     }
 }
 
-int processor_of_command(int cmd) {
+int run(char** argv) {
+    char dirname[MAX_FILENAME_LENGTH];
+    strcpy(dirname, argv[1]);
+    int numb_files = atoi(argv[2]), min_words = atoi(argv[3]), max_words = atoi(argv[4]), proc = atoi(argv[5]);
+    int return_code;
+    return_code = generate_files_txt(dirname, numb_files, min_words, max_words);
+    if (return_code) {
+        return return_code;
+    }
     top_words * top_w;
-    switch (cmd) {
-        case 1: 
-            printf("Input : number of file, min words, max words\n");
-            size_t num_files, min_w, max_w;
-            scanf("%lu %lu %lu", &num_files, &min_w, &max_w);
-            return generate_files_txt(num_files, min_w, max_w);
-        case 2: 
-            top_w = files_top_words_consistent(DIR_PATH, 0);
-            
-            if (top_w == NULL) {
-                return 1;
-            }
-            else {
-                print_top_words(top_w, n_files(DIR_PATH));
-                free(top_w);
-                return 0;
-            }
-
-        case 3: 
-            printf("Input max numbers of proccess\n");
-            size_t max_n_proc;
-            scanf("%lu", &max_n_proc);
-            top_w = files_top_words_parallel(DIR_PATH, max_n_proc);
-            if (top_w == NULL) {
-                return 1;
-            }
-            else {
-                print_top_words(top_w, n_files(DIR_PATH));
-                clear_top_words_for_parallel(top_w, DIR_PATH);
-                return 0;
-            }
-        case 4:
-            printf("Input numbers of proccess\n");
-            size_t num;
-            scanf("%lu", &num);
-            if (num == 1) {
-                return f_timer(files_top_words_consistent, DIR_PATH, num);                
-            }
-            else {
-                return f_timer(files_top_words_parallel, DIR_PATH, num);
-            }
-        case 0: return 0;
-        default: 
-            printf("Command is not recognized\n");
-            return 0;
-    }
-}
-
-int run() {
-    printf("1 - Generate files, 2 - Print top words in files constist, 3 - Print top words in files parallel, 4 - Function time, 0 - exit\n");
-    int command = 1;
-    while (command) {
-        printf("Input command: ");
-        scanf("%i", &command);
-        int return_code = processor_of_command(command);
-        if (return_code == 1) {
-            return return_code;
+    if (proc <= 1) {
+        top_w = files_top_words_consistent(dirname, 0);
+        if (top_w == NULL) {
+            return 1;
         }
+        print_top_words(top_w, n_files(dirname));
+        clear_top_words_for_parallel(top_w, dirname);
+        return f_timer(files_top_words_consistent, dirname, 0);
+    } 
+    else {
+        top_w = files_top_words_parallel(dirname, proc);
+        if (top_w == NULL) {
+            return 1;
+        }
+        print_top_words(top_w, n_files(dirname));
+        clear_top_words_for_parallel(top_w, dirname);
+        return f_timer(files_top_words_parallel, dirname, proc);
     }
-    return 0;
 }
 
-int main() {
-    return run();
+int main(int argc, char** argv) {
+    if (argc < 6) {
+        printf("Not enough arguments\n");
+        return 1;
+    }
+    return run(argv);
 }
