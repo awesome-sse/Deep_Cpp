@@ -46,7 +46,7 @@ script:
     # Build main and tests
      - mkdir .build/
      - cd .build/
-     - cmake -DCMAKE_BUILD_TYPE ..  
+     - cmake ..  
      - make
      - valgrind --tool=memcheck --leak-check=full --error-exitcode=1 ctest
      - cd ..
