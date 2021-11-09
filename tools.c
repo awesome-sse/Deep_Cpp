@@ -1,9 +1,24 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "file_info.h"
+
+#include "dirent.h"
 #include "assert.h"
-#define START_BUFFER_TF_IDF 4
+#include "tools.h"
+
+int n_files(char * dirname) {
+    int kol = 0;
+    DIR * dir = opendir(dirname);
+    struct dirent* entity;
+    entity = readdir(dir);
+    while (entity != NULL) {
+        if (strcmp(entity->d_name, ".") != 0 && strcmp(entity->d_name, "..") != 0) {
+            ++kol;
+        }
+        entity = readdir(dir);
+    }
+    return kol;
+}
 
 char lower(char sym) {
     if (sym >= 'A' && sym <= 'Z') {
@@ -124,4 +139,32 @@ void clear_file_info(file_info * f_info) {
     for (int i = 0; i < N_TOP; ++i) {
         f_info->top_words[i] = NULL;
     }
+}
+
+void add_in_top_list(top_words * top_list, int size, file_info * f_info) {
+    for (int i = 0; i < size; ++i) {
+        if (strcmp(top_list[i].file_name, f_info->name) == 0) {
+            for (int j = 0; j < N_TOP; ++j) {
+                if (f_info->top_words[j] != NULL) {
+                    strcpy(top_list[i].top_words[j], f_info->top_words[j]->word_name);
+                }
+            }
+            break;
+        }
+    }
+}
+
+void init_top_list(top_words * top_list, char * dirname) {
+    int i = 0;
+    DIR * dir = opendir(dirname);
+    struct dirent* entity;
+    entity = readdir(dir);
+    while (entity != NULL) {
+        if (strcmp(entity->d_name, ".") != 0 && strcmp(entity->d_name, "..") != 0) {
+            strcpy(top_list[i].file_name, entity->d_name);
+            ++i;
+        }
+        entity = readdir(dir);
+    }
+    closedir(dir);
 }

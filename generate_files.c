@@ -24,7 +24,7 @@ char* random_word(size_t size) {
     if (size < 1) {
         size = 1;
     }
-    
+
     char * word = (char*)malloc(sizeof(char) * size);
     if (word == NULL) {
         assert(0);

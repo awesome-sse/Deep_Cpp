@@ -16,5 +16,5 @@ typedef struct file_info {
     word_info * top_words[N_TOP];
 } file_info;
 
-file_info create_file_info(char * name_file);
+file_info create_file_info(char * path, char * name_file);
 void clear_file_info(file_info * f_info);
