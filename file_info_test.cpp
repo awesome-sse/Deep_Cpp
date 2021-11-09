@@ -21,19 +21,21 @@ TEST(TEAM_LIST_TEST, test_creating_file_info) {
 }
 
 TEST(TEAM_LIST_TEST, test_lib_file_data_consistent) {
-    top_words * t_w = files_top_words_consistent("../test_files", 0);
-    EXPECT_EQ(t_w[0].top_words[0], "a");
-    free(t_w);
+    file_info f_info = create_file_info("../test_files/1.txt", "1.txt");
+    EXPECT_EQ(f_info.top_words[0]->count, 5);
+    EXPECT_EQ(f_info.top_words[1]->count, 4);
+    EXPECT_EQ(f_info.top_words[2]->count, 3);
+    EXPECT_EQ(f_info.top_words[3]->count, 2);
+    EXPECT_EQ(f_info.top_words[4]->count, 1);
 }
 
 TEST(TEAM_LIST_TEST, test_lib_file_data_parallel) {
-    top_words * t_w = files_top_words_parallel("../test_files", 1);
-    EXPECT_EQ(t_w[0].top_words[0], "a");
-    EXPECT_EQ(t_w[0].top_words[1], "b");
-    EXPECT_EQ(t_w[0].top_words[2], "c");
-    EXPECT_EQ(t_w[0].top_words[3], "d");
-    EXPECT_EQ(t_w[0].top_words[4], "e");
-    free(t_w);
+    file_info f_info = create_file_info("../test_files/3.txt", "3.txt");
+    EXPECT_EQ(f_info.top_words[0]->count, 1);
+    EXPECT_EQ(f_info.top_words[1]->count, 1);
+    EXPECT_EQ(f_info.top_words[2]->count, 1);
+    EXPECT_EQ(f_info.top_words[3]->count, 1);
+    EXPECT_EQ(f_info.top_words[4]->count, 1);
 }
 
 TEST(TEAM_LIST_TEST, test_increase_buf_size) {

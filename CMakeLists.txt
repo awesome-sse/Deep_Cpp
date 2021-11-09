@@ -11,9 +11,6 @@ add_library(lib_file_data_parallel SHARED lib_file_data_parallel.c)
 add_library(tools STATIC tools.c)
 add_library(f_timer STATIC f_timer.c)
 
-set(CMAKE_C_FLAGS_PROFILE --coverage)
-set(CMAKE_CXX_FLAGS_PROFILE --coverage)
-
 add_executable(main main.c)
 target_link_libraries(main generate_files lib_file_data_consistent lib_file_data_parallel tools f_timer gtest_main)
 

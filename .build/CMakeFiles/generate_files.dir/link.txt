@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgenerate_files.a  CMakeFiles/generate_files.dir/generate_files.c.o
-/usr/bin/ranlib libgenerate_files.a
