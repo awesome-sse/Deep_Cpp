@@ -9,13 +9,13 @@ add_library(generate_files STATIC generate_files.c)
 add_library(lib_file_data_consistent STATIC lib_file_data_consistent.c)
 add_library(lib_file_data_parallel SHARED lib_file_data_parallel.c)
 add_library(tools STATIC tools.c)
-add_library(timer STATIC timer.c)
+add_library(f_timer STATIC f_timer.c)
 
 set(CMAKE_C_FLAGS_PROFILE --coverage)
 set(CMAKE_CXX_FLAGS_PROFILE --coverage)
 
 add_executable(main main.c)
-target_link_libraries(main generate_files lib_file_data_consistent lib_file_data_parallel tools timer gtest_main)
+target_link_libraries(main generate_files lib_file_data_consistent lib_file_data_parallel tools f_timer gtest_main)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -28,7 +28,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(file_info_test file_info_test.cpp)
-target_link_libraries(file_info_test lib_file_data_consistent gtest_main)
+target_link_libraries(file_info_test tools lib_file_data_consistent lib_file_data_parallel gtest_main)
 
 include(GoogleTest)
 gtest_add_tests(TARGET file_info_test)

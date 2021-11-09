@@ -7,9 +7,9 @@
 #include "lib_file_data_parallel.h"
 #include "generate_files.h"
 #include "tools.h"
-#include "timer.h"
+#include "f_timer.h"
 
-#define DIR_PATH "../files"
+#define DIR_PATH "../test_files"
 
 
 void print_top_words(top_words * top_list, int size) {
@@ -61,10 +61,10 @@ int processor_of_command(int cmd) {
             int num;
             scanf("%i", &num);
             if (num == 1) {
-                printf("Time : %f\n", f_timer(files_top_words_consistent, DIR_PATH, num));
+                return f_timer(files_top_words_consistent, DIR_PATH, num);                
             }
             else {
-                printf("Time : %f\n", f_timer(files_top_words_parallel, DIR_PATH, num));
+                return f_timer(files_top_words_parallel, DIR_PATH, num);
             }
         case 0: return 0;
         default: 

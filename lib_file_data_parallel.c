@@ -11,6 +11,9 @@
 
 
 top_words * files_top_words_parallel(char * dirname, int max_proc) {
+    if (max_proc < 1) {
+        return NULL;
+    }
     pid_t pid;
 
     size_t dir_size = n_files(dirname);

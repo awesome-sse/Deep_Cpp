@@ -1,10 +1,10 @@
-Start testing: Nov 09 05:00 MSK
+Start testing: Nov 09 05:18 MSK
 ----------------------------------------------------------
 1/5 Testing: TEAM_LIST_TEST.test_clear_list
 1/5 Test: TEAM_LIST_TEST.test_clear_list
 Command: "/app/C++/hm2/technopark_homeworks/.build/file_info_test" "--gtest_filter=TEAM_LIST_TEST.test_clear_list"
 Directory: /app/C++/hm2/technopark_homeworks/.build
-"TEAM_LIST_TEST.test_clear_list" start time: Nov 09 05:00 MSK
+"TEAM_LIST_TEST.test_clear_list" start time: Nov 09 05:18 MSK
 Output:
 ----------------------------------------------------------
 Note: Google Test filter = TEAM_LIST_TEST.test_clear_list
@@ -22,7 +22,7 @@ Note: Google Test filter = TEAM_LIST_TEST.test_clear_list
 Test time =   0.05 sec
 ----------------------------------------------------------
 Test Passed.
-"TEAM_LIST_TEST.test_clear_list" end time: Nov 09 05:00 MSK
+"TEAM_LIST_TEST.test_clear_list" end time: Nov 09 05:18 MSK
 "TEAM_LIST_TEST.test_clear_list" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -30,7 +30,7 @@ Test Passed.
 2/5 Test: TEAM_LIST_TEST.test_creating_file_info
 Command: "/app/C++/hm2/technopark_homeworks/.build/file_info_test" "--gtest_filter=TEAM_LIST_TEST.test_creating_file_info"
 Directory: /app/C++/hm2/technopark_homeworks/.build
-"TEAM_LIST_TEST.test_creating_file_info" start time: Nov 09 05:00 MSK
+"TEAM_LIST_TEST.test_creating_file_info" start time: Nov 09 05:18 MSK
 Output:
 ----------------------------------------------------------
 Note: Google Test filter = TEAM_LIST_TEST.test_creating_file_info
@@ -38,8 +38,8 @@ Note: Google Test filter = TEAM_LIST_TEST.test_creating_file_info
 [----------] Global test environment set-up.
 [----------] 1 test from TEAM_LIST_TEST
 [ RUN      ] TEAM_LIST_TEST.test_creating_file_info
-[       OK ] TEAM_LIST_TEST.test_creating_file_info (3 ms)
-[----------] 1 test from TEAM_LIST_TEST (3 ms total)
+[       OK ] TEAM_LIST_TEST.test_creating_file_info (2 ms)
+[----------] 1 test from TEAM_LIST_TEST (2 ms total)
 
 [----------] Global test environment tear-down
 [==========] 1 test from 1 test suite ran. (3 ms total)
@@ -48,7 +48,7 @@ Note: Google Test filter = TEAM_LIST_TEST.test_creating_file_info
 Test time =   0.05 sec
 ----------------------------------------------------------
 Test Passed.
-"TEAM_LIST_TEST.test_creating_file_info" end time: Nov 09 05:00 MSK
+"TEAM_LIST_TEST.test_creating_file_info" end time: Nov 09 05:18 MSK
 "TEAM_LIST_TEST.test_creating_file_info" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -56,7 +56,7 @@ Test Passed.
 3/5 Test: TEAM_LIST_TEST.test_lib_file_data_consistent
 Command: "/app/C++/hm2/technopark_homeworks/.build/file_info_test" "--gtest_filter=TEAM_LIST_TEST.test_lib_file_data_consistent"
 Directory: /app/C++/hm2/technopark_homeworks/.build
-"TEAM_LIST_TEST.test_lib_file_data_consistent" start time: Nov 09 05:00 MSK
+"TEAM_LIST_TEST.test_lib_file_data_consistent" start time: Nov 09 05:18 MSK
 Output:
 ----------------------------------------------------------
 Note: Google Test filter = TEAM_LIST_TEST.test_lib_file_data_consistent
@@ -67,14 +67,14 @@ Note: Google Test filter = TEAM_LIST_TEST.test_lib_file_data_consistent
 /app/C++/hm2/technopark_homeworks/file_info_test.cpp:25: Failure
 Expected equality of these values:
   t_w[0].top_words[0]
-    Which is: 0x561148c476d0
+    Which is: 0x55a79a6776d0
   "a"
-    Which is: 0x56114773714d
-[  FAILED  ] TEAM_LIST_TEST.test_lib_file_data_consistent (10 ms)
-[----------] 1 test from TEAM_LIST_TEST (10 ms total)
+    Which is: 0x55a7998f114d
+[  FAILED  ] TEAM_LIST_TEST.test_lib_file_data_consistent (12 ms)
+[----------] 1 test from TEAM_LIST_TEST (12 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (10 ms total)
+[==========] 1 test from 1 test suite ran. (12 ms total)
 [  PASSED  ] 0 tests.
 [  FAILED  ] 1 test, listed below:
 [  FAILED  ] TEAM_LIST_TEST.test_lib_file_data_consistent
@@ -84,7 +84,7 @@ Expected equality of these values:
 Test time =   0.06 sec
 ----------------------------------------------------------
 Test Failed.
-"TEAM_LIST_TEST.test_lib_file_data_consistent" end time: Nov 09 05:00 MSK
+"TEAM_LIST_TEST.test_lib_file_data_consistent" end time: Nov 09 05:18 MSK
 "TEAM_LIST_TEST.test_lib_file_data_consistent" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -92,7 +92,7 @@ Test Failed.
 4/5 Test: TEAM_LIST_TEST.test_lib_file_data_parallel
 Command: "/app/C++/hm2/technopark_homeworks/.build/file_info_test" "--gtest_filter=TEAM_LIST_TEST.test_lib_file_data_parallel"
 Directory: /app/C++/hm2/technopark_homeworks/.build
-"TEAM_LIST_TEST.test_lib_file_data_parallel" start time: Nov 09 05:00 MSK
+"TEAM_LIST_TEST.test_lib_file_data_parallel" start time: Nov 09 05:18 MSK
 Output:
 ----------------------------------------------------------
 Note: Google Test filter = TEAM_LIST_TEST.test_lib_file_data_parallel
@@ -103,39 +103,39 @@ Note: Google Test filter = TEAM_LIST_TEST.test_lib_file_data_parallel
 /app/C++/hm2/technopark_homeworks/file_info_test.cpp:31: Failure
 Expected equality of these values:
   t_w[0].top_words[0]
-    Which is: 0x7fa8f296d100
+    Which is: 0x7f4ce6a27100
   "a"
-    Which is: 0x5618c960614d
+    Which is: 0x555efdd0614d
 /app/C++/hm2/technopark_homeworks/file_info_test.cpp:32: Failure
 Expected equality of these values:
   t_w[0].top_words[1]
-    Which is: 0x7fa8f296d11e
+    Which is: 0x7f4ce6a2711e
   "b"
-    Which is: 0x5618c9606167
+    Which is: 0x555efdd06167
 /app/C++/hm2/technopark_homeworks/file_info_test.cpp:33: Failure
 Expected equality of these values:
   t_w[0].top_words[2]
-    Which is: 0x7fa8f296d13c
+    Which is: 0x7f4ce6a2713c
   "c"
-    Which is: 0x5618c9606181
+    Which is: 0x555efdd06181
 /app/C++/hm2/technopark_homeworks/file_info_test.cpp:34: Failure
 Expected equality of these values:
   t_w[0].top_words[3]
-    Which is: 0x7fa8f296d15a
+    Which is: 0x7f4ce6a2715a
   "d"
-    Which is: 0x5618c960619b
+    Which is: 0x555efdd0619b
 /app/C++/hm2/technopark_homeworks/file_info_test.cpp:35: Failure
 Expected equality of these values:
   t_w[0].top_words[4]
-    Which is: 0x7fa8f296d178
+    Which is: 0x7f4ce6a27178
   "e"
-    Which is: 0x5618c96061b5
+    Which is: 0x555efdd061b5
 free(): invalid pointer
 <end of output>
-Test time =   0.05 sec
+Test time =   0.11 sec
 ----------------------------------------------------------
 Test Failed.
-"TEAM_LIST_TEST.test_lib_file_data_parallel" end time: Nov 09 05:00 MSK
+"TEAM_LIST_TEST.test_lib_file_data_parallel" end time: Nov 09 05:18 MSK
 "TEAM_LIST_TEST.test_lib_file_data_parallel" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -143,7 +143,7 @@ Test Failed.
 5/5 Test: TEAM_LIST_TEST.test_increase_buf_size
 Command: "/app/C++/hm2/technopark_homeworks/.build/file_info_test" "--gtest_filter=TEAM_LIST_TEST.test_increase_buf_size"
 Directory: /app/C++/hm2/technopark_homeworks/.build
-"TEAM_LIST_TEST.test_increase_buf_size" start time: Nov 09 05:00 MSK
+"TEAM_LIST_TEST.test_increase_buf_size" start time: Nov 09 05:18 MSK
 Output:
 ----------------------------------------------------------
 Note: Google Test filter = TEAM_LIST_TEST.test_increase_buf_size
@@ -151,18 +151,18 @@ Note: Google Test filter = TEAM_LIST_TEST.test_increase_buf_size
 [----------] Global test environment set-up.
 [----------] 1 test from TEAM_LIST_TEST
 [ RUN      ] TEAM_LIST_TEST.test_increase_buf_size
-[       OK ] TEAM_LIST_TEST.test_increase_buf_size (3 ms)
-[----------] 1 test from TEAM_LIST_TEST (3 ms total)
+[       OK ] TEAM_LIST_TEST.test_increase_buf_size (2 ms)
+[----------] 1 test from TEAM_LIST_TEST (2 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (3 ms total)
+[==========] 1 test from 1 test suite ran. (2 ms total)
 [  PASSED  ] 1 test.
 <end of output>
 Test time =   0.04 sec
 ----------------------------------------------------------
 Test Passed.
-"TEAM_LIST_TEST.test_increase_buf_size" end time: Nov 09 05:00 MSK
+"TEAM_LIST_TEST.test_increase_buf_size" end time: Nov 09 05:18 MSK
 "TEAM_LIST_TEST.test_increase_buf_size" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Nov 09 05:00 MSK
+End testing: Nov 09 05:18 MSK

@@ -226,13 +226,13 @@ CMakeFiles/f_timer.dir/clean:
 # Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
-CMakeFiles/main.dir/all: CMakeFiles/f_timer.dir/all
-CMakeFiles/main.dir/all: CMakeFiles/lib_file_data_parallel.dir/all
-CMakeFiles/main.dir/all: CMakeFiles/lib_file_data_consistent.dir/all
-CMakeFiles/main.dir/all: CMakeFiles/generate_files.dir/all
-CMakeFiles/main.dir/all: CMakeFiles/tools.dir/all
 CMakeFiles/main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
 CMakeFiles/main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/lib_file_data_consistent.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/lib_file_data_parallel.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/generate_files.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/tools.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/f_timer.dir/all
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/app/C++/hm2/technopark_homeworks/.build/CMakeFiles --progress-num=19,20 "Built target main"
@@ -286,11 +286,11 @@ CMakeFiles/lib_file_data_parallel.dir/clean:
 # Target rules for target CMakeFiles/file_info_test.dir
 
 # All Build rule for target.
-CMakeFiles/file_info_test.dir/all: CMakeFiles/lib_file_data_parallel.dir/all
-CMakeFiles/file_info_test.dir/all: CMakeFiles/lib_file_data_consistent.dir/all
-CMakeFiles/file_info_test.dir/all: CMakeFiles/tools.dir/all
 CMakeFiles/file_info_test.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
 CMakeFiles/file_info_test.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
+CMakeFiles/file_info_test.dir/all: CMakeFiles/lib_file_data_consistent.dir/all
+CMakeFiles/file_info_test.dir/all: CMakeFiles/lib_file_data_parallel.dir/all
+CMakeFiles/file_info_test.dir/all: CMakeFiles/tools.dir/all
 	$(MAKE) -f CMakeFiles/file_info_test.dir/build.make CMakeFiles/file_info_test.dir/depend
 	$(MAKE) -f CMakeFiles/file_info_test.dir/build.make CMakeFiles/file_info_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/app/C++/hm2/technopark_homeworks/.build/CMakeFiles --progress-num=3,4 "Built target file_info_test"
@@ -344,8 +344,8 @@ CMakeFiles/lib_file_data_consistent.dir/clean:
 # Target rules for target _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir
 
 # All Build rule for target.
-_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
 _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
+_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
 	$(MAKE) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/app/C++/hm2/technopark_homeworks/.build/CMakeFiles --progress-num=9,10 "Built target gmock_main"
