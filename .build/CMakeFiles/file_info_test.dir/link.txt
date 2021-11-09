@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/file_info_test.dir/file_info_test.cpp.o  -o file_info_test  -Wl,-rpath,/app/C++/hm2/technopark_homeworks/.build libtools.a liblib_file_data_consistent.a liblib_file_data_parallel.so lib/libgtest_main.a lib/libgtest.a -lpthread 

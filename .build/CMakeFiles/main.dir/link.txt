@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/main.dir/main.c.o  -o main  -Wl,-rpath,/app/C++/hm2/technopark_homeworks/.build libgenerate_files.a liblib_file_data_consistent.a liblib_file_data_parallel.so libtools.a libf_timer.a lib/libgtest_main.a lib/libgtest.a -lpthread 

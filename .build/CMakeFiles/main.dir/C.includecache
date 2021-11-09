@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/app/C++/hm2/technopark_homeworks/f_timer.h
+tools.h
+/app/C++/hm2/technopark_homeworks/tools.h
+
+/app/C++/hm2/technopark_homeworks/generate_files.h
+
+/app/C++/hm2/technopark_homeworks/lib_file_data_consistent.h
+tools.h
+/app/C++/hm2/technopark_homeworks/tools.h
+
+/app/C++/hm2/technopark_homeworks/lib_file_data_parallel.h
+tools.h
+/app/C++/hm2/technopark_homeworks/tools.h
+
+/app/C++/hm2/technopark_homeworks/main.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+unistd.h
+-
+lib_file_data_consistent.h
+/app/C++/hm2/technopark_homeworks/lib_file_data_consistent.h
+lib_file_data_parallel.h
+/app/C++/hm2/technopark_homeworks/lib_file_data_parallel.h
+generate_files.h
+/app/C++/hm2/technopark_homeworks/generate_files.h
+tools.h
+/app/C++/hm2/technopark_homeworks/tools.h
+f_timer.h
+/app/C++/hm2/technopark_homeworks/f_timer.h
+
+/app/C++/hm2/technopark_homeworks/tools.h
+

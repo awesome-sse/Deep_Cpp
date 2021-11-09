@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/app/C++/hm2/technopark_homeworks/lib_file_data_parallel.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+unistd.h
+-
+sys/types.h
+-
+sys/wait.h
+-
+sys/mman.h
+-
+dirent.h
+/app/C++/hm2/technopark_homeworks/dirent.h
+assert.h
+/app/C++/hm2/technopark_homeworks/assert.h
+lib_file_data_parallel.h
+/app/C++/hm2/technopark_homeworks/lib_file_data_parallel.h
+
+/app/C++/hm2/technopark_homeworks/lib_file_data_parallel.h
+tools.h
+/app/C++/hm2/technopark_homeworks/tools.h
+
+/app/C++/hm2/technopark_homeworks/tools.h
+
